@@ -12,7 +12,11 @@ const Register = () => {
   const handleRegister = e => {
       e.preventDefault();
       const form = new FormData(e.currentTarget);
-      console.log(form.get("email"));
+      const name = form.get("name");
+      const photoURL = form.get("photo");
+      const email = form.get("email");
+      const password = form.get("password");
+      console.log(name,photoURL,email,password);
   };
 
   return (
