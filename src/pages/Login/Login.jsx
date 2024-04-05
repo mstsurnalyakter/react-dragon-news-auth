@@ -1,9 +1,13 @@
 import Navbar from '../Shared/Navbar/Navbar';
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
+import { useContext } from 'react';
 import { Link } from "react-router-dom";
+import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Login = () => {
+    // const {name} = useContext(AuthContext);
+    // console.log(name);
     const handleLogin = e =>{
         e.preventDefault();
         console.log(e.currentTarget);

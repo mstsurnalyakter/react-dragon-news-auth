@@ -7,8 +7,14 @@ import {
 } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 import Navbar from "../Shared/Navbar/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+
+    const { createUser } = useContext(AuthContext);
+
+
   const handleRegister = e => {
       e.preventDefault();
       const form = new FormData(e.currentTarget);
@@ -17,6 +23,19 @@ const Register = () => {
       const email = form.get("email");
       const password = form.get("password");
       console.log(name,photoURL,email,password);
+
+
+    //   create user
+    createUser(email, password)
+    .then(result=>{
+        console.log(result.user);
+    })
+    .catch(error=>{
+        console.error(error);
+    })
+
+
+
   };
 
   return (
@@ -108,7 +127,11 @@ const Register = () => {
             containerProps={{ className: "-ml-2.5" }}
           />
 
-          <Button type="submit" className="mt-6 capitalize" fullWidth>
+          <Button
+            type="submit"
+            className="mt-6 capitalize"
+            fullWidth
+          >
             Register
           </Button>
           <Typography color="gray" className="mt-4 text-center font-normal">
