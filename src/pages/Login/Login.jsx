@@ -6,13 +6,23 @@ import { AuthContext } from '../../providers/AuthProvider';
 
 
 const Login = () => {
-    // const {name} = useContext(AuthContext);
-    // console.log(name);
+    const { singIn } = useContext(AuthContext);
+
     const handleLogin = e =>{
         e.preventDefault();
         console.log(e.currentTarget);
         const form = new FormData(e.currentTarget);
-        console.log('form',form.get("password"));
+        const email = form.get("email");
+        const password = form.get("password");
+        console.log(email,password);
+
+        singIn(email,password)
+        .then(result=>{
+            console.log(result.user);
+        })
+        .catch(error=>{
+            console.error(error);
+        });
 
     }
     const handleForgetPassword = () => {};
