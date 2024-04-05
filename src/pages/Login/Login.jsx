@@ -4,9 +4,14 @@ import { Link } from "react-router-dom";
 
 
 const Login = () => {
-    const handleLogin = () =>{
-        
+    const handleLogin = e =>{
+        e.preventDefault();
+        console.log(e.currentTarget);
+        const form = new FormData(e.currentTarget);
+        console.log('form',form.get("password"));
+
     }
+    const handleForgetPassword = () => {};
   return (
     <div>
       <Navbar />
@@ -48,6 +53,14 @@ const Login = () => {
                 className: "before:content-none after:content-none",
               }}
             />
+            <Typography color="gray" className="font-normal">
+              <Link
+                onClick={handleForgetPassword}
+                className="font-medium underline text-blue-900"
+              >
+                Forget Password
+              </Link>
+            </Typography>
           </div>
 
           <Button type="submit" className="mt-6 capitalize" fullWidth>
@@ -57,7 +70,7 @@ const Login = () => {
             Don&apos;t Have An Account ?{" "}
             <Link
               to={"/register"}
-              className="font-medium underline text-gray-900"
+              className="font-medium underline text-blue-500"
             >
               Register here
             </Link>
